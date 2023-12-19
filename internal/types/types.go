@@ -8,7 +8,6 @@ type InvokeParams struct {
 type DingMessageSendRequest struct {
 	Text                      *text      `json:"text"`
 	ConversationId            string     `json:"conversationId"`
-	AtUsers                   []*atUsers `json:"atUsers"`
 	ChatbotCorpId             string     `json:"chatbotCorpId"`
 	ChatbotUserId             string     `json:"chatbotUserId"`
 	MsgId                     string     `json:"msgId"`
@@ -20,8 +19,6 @@ type DingMessageSendRequest struct {
 	SenderCorpId              string     `json:"senderCorpId"`
 	ConversationType          string     `json:"conversationType"`
 	SenderId                  string     `json:"senderId"`
-	ConversationTitle         string     `json:"conversationTitle"`
-	IsInAtList                bool       `json:"isInAtList"`
 	SessionWebhook            string     `json:"sessionWebhook"`
 	RobotCode                 string     `json:"robotCode"`
 	Msgtype                   string     `json:"msgtype"`
@@ -29,8 +26,4 @@ type DingMessageSendRequest struct {
 
 type text struct {
 	Content string `json:"content"`
-}
-
-type atUsers struct {
-	DingtalkId string `json:"dingtalkId"`
 }
