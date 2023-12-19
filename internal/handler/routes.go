@@ -10,6 +10,15 @@ import (
 )
 
 func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
+	server.AddRoutes([]rest.Route{
+		{
+			Method: http.MethodGet,
+			Path:   "/",
+			Handler: func(w http.ResponseWriter, r *http.Request) {
+				w.Write([]byte("hello world"))
+			},
+		},
+	})
 	server.AddRoutes(
 		[]rest.Route{
 			{
