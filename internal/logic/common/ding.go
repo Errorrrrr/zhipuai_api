@@ -30,7 +30,7 @@ func GetDingAccessToken() string {
 	}
 	bodyStr, _ := json.Marshal(body)
 	headers := map[string]string{
-		"Text-Type": "application/json",
+		"Content-Type": "application/json",
 	}
 	resp, err := http.HTTPRequest("POST", "https://api.dingtalk.com/v1.0/oauth2/accessToken", headers, bodyStr)
 	if err != nil {
