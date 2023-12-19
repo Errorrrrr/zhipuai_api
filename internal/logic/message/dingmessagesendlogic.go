@@ -25,7 +25,7 @@ func NewDingMessageSendLogic(ctx context.Context, svcCtx *svc.ServiceContext) *D
 }
 
 func (l *DingMessageSendLogic) DingMessageSend(req *types.DingMessageSendRequest) (err error) {
-	if req.Content == "" {
+	if req.Text.Content == "" {
 		return errors.New("content is empty")
 	}
 	err = logic.DingSend(req)

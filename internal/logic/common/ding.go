@@ -30,7 +30,7 @@ func GetDingAccessToken() string {
 	}
 	bodyStr, _ := json.Marshal(body)
 	headers := map[string]string{
-		"Content-Type": "application/json",
+		"Text-Type": "application/json",
 	}
 	resp, err := http.HTTPRequest("POST", "https://api.dingtalk.com/v1.0/oauth2/accessToken", headers, bodyStr)
 	if err != nil {
@@ -55,7 +55,7 @@ func DingSend(args *types.DingMessageSendRequest) (_err error) {
 	content := struct {
 		Content string `json:"content"`
 	}{
-		Content: args.Content,
+		Content: args.Text,
 	}
 	msgParam, _ := json.Marshal(content)
 	privateChatSendRequest := &dingtalkrobot_1_0.PrivateChatSendRequest{
