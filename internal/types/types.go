@@ -6,5 +6,6 @@ type InvokeParams struct {
 }
 
 type DingMessageSendRequest struct {
-	Content string `json:"content"`
+	Content        string `json:"content"`
+	ConversationId string `json:"conversationId"`
 }

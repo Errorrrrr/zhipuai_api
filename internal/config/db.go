@@ -17,7 +17,7 @@ type MysqlCfg struct {
 }
 
 type DingtalkConfig struct {
-	Dingtalk DingtalkCfg
+	Dingtalk DingtalkCfg `json:"Dingtalk"`
 }
 type DingtalkCfg struct {
 	AppKey    string `json:"app_key"`

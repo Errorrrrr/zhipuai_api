@@ -29,7 +29,7 @@ func _main(args []*string) (_err error) {
 	}
 
 	privateChatSendHeaders := &dingtalkrobot_1_0.PrivateChatSendHeaders{}
-	privateChatSendHeaders.XAcsDingtalkAccessToken = tea.String("<your access token>")
+	privateChatSendHeaders.XAcsDingtalkAccessToken = tea.String("8cffcc0bfa1d3de2bf52cb17bfbd1cc2")
 	privateChatSendRequest := &dingtalkrobot_1_0.PrivateChatSendRequest{
 		MsgParam:           tea.String("{\"content\":\"钉钉，让进步发生\"}"),
 		MsgKey:             tea.String("sampleText"),

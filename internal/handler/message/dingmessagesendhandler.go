@@ -17,8 +17,8 @@ func DingMessageSendHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := message.NewDingMessageLogic(r.Context(), svcCtx)
-		err := l.DingMessage(&req)
+		l := message.NewDingMessageSendLogic(r.Context(), svcCtx)
+		err := l.DingMessageSend(&req)
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 		} else {

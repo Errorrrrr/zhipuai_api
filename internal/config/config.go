@@ -8,7 +8,7 @@ type Config struct {
 	Env string `json:"Env"`
 	rest.RestConf
 	DBConfig
-	DingtalkConfig `json:"Dingtalk"`
+	DingtalkConfig
 }
 
 func IsTest() bool {

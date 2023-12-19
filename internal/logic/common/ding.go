@@ -9,6 +9,7 @@ import (
 	"github.com/alibabacloud-go/tea/tea"
 	"zhipuai_api/internal/common/http"
 	"zhipuai_api/internal/config"
+	"zhipuai_api/internal/types"
 	"zhipuai_api/pkg/resource"
 )
 
@@ -43,7 +44,7 @@ func GetDingAccessToken() string {
 	return ans.AccessToken
 }
 
-func DingSend(args string) (_err error) {
+func DingSend(args *types.DingMessageSendRequest) (_err error) {
 	token := GetDingAccessToken()
 	if token == "" {
 		return errors.New("获取钉钉token失败")
@@ -51,10 +52,17 @@ func DingSend(args string) (_err error) {
 	client := resource.DingClient
 	privateChatSendHeaders := &dingtalkrobot_1_0.PrivateChatSendHeaders{}
 	privateChatSendHeaders.XAcsDingtalkAccessToken = tea.String(token)
+	content := struct {
+		Content string `json:"content"`
+	}{
+		Content: args.Content,
+	}
+	msgParam, _ := json.Marshal(content)
 	privateChatSendRequest := &dingtalkrobot_1_0.PrivateChatSendRequest{
-		MsgParam:  tea.String(args),
-		MsgKey:    tea.String("sampleText"),
-		RobotCode: tea.String(config.Conf.Dingtalk.AppKey),
+		MsgParam:           tea.String(string(msgParam)),
+		MsgKey:             tea.String("sampleMarkdown"),
+		RobotCode:          tea.String(config.Conf.Dingtalk.AppKey),
+		OpenConversationId: tea.String(args.ConversationId),
 	}
 	tryErr := func() (_e error) {
 		defer func() {

@@ -26,7 +26,7 @@ func main() {
 		panic(err)
 	}
 	defer resource.Destroy()
-
+	config.Conf = &c
 	opt := rest.WithNotFoundHandler(NotFoundHandler())
 	server := rest.MustNewServer(c.RestConf, opt)
 	defer server.Stop()
