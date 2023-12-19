@@ -12,7 +12,7 @@ var (
 )
 
 func Init(c config.Config) error {
-	DB = getMysqlDB(c.DBConfig)
+	//DB = getMysqlDB(c.DBConfig)
 	DingClient = createClient()
 	return nil
 }

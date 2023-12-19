@@ -2,8 +2,8 @@ package message
 
 import (
 	"context"
-	"fmt"
-
+	"errors"
+	logic "zhipuai_api/internal/logic/common"
 	"zhipuai_api/internal/svc"
 	"zhipuai_api/internal/types"
 
@@ -24,7 +24,10 @@ func NewDingMessageLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DingM
 	}
 }
 
-func (l *DingMessageLogic) DingMessage(req *types.DingMessageRequest) (resp string, err error) {
-	fmt.Println(req)
+func (l *DingMessageLogic) DingMessage(req *types.DingMessageSendRequest) (err error) {
+	if req.Content == "" {
+		return errors.New("content is empty")
+	}
+	err = logic.DingSend(req.Content)
 	return
 }

@@ -1,11 +1,6 @@
 type (
 	DingMessageRequest {
-		MsgParam           string `json:"msgParam"`
-		MsgKey             string `json:"msgKey"`
-		OpenConversationId string `json:"openConversationId"`
-		RobotCode          string `json:"robotCode"`
-		Token              string `json:"token"`
-		CoolAppCode        string `json:"coolAppCode"`
+		Content string `json:"content"`
 	}
 )
 
