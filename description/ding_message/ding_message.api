@@ -1,0 +1,22 @@
+type (
+	DingMessageRequest {
+		MsgParam           string `json:"msgParam"`
+		MsgKey             string `json:"msgKey"`
+		OpenConversationId string `json:"openConversationId"`
+		RobotCode          string `json:"robotCode"`
+		Token              string `json:"token"`
+		CoolAppCode        string `json:"coolAppCode"`
+	}
+)
+
+@server (
+	group: message
+)
+
+service main{
+	@doc (
+		summary: "发送钉钉消息"
+	)
+	@handler DingMessage
+	post /ding/message/send (DingMessageRequest) returns (string)
+}

@@ -1,0 +1,21 @@
+Name: zhipuai_api
+Env: dev
+Host: 0.0.0.0
+Port: 8888
+Timeout: 8000 #8s
+
+Mysql:
+  driver: mysql
+  host: 127.0.0.1
+  port: 3306
+  db_name: zhipuai
+  user_name: root
+  password: '950901'
+  max_idle_connections: 128
+  max_open_connections: 256
+  max_lifetime: 5
+  db_debug: true #调试模式
+
+Dingtalk:
+  app_key: dinght0mds5sdpwztcxf
+  app_secret: JEXTbs0WWbRmVz14stCWx0br4ZTsjZ7XgAJaaPOWhZ8A76Xna_hay9wYrL1sHh3g

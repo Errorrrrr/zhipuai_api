@@ -1,0 +1,18 @@
+type (
+	InvokeParams {
+		UUID    string `json:"uuid"`
+		Content string `json:"content"`
+	}
+)
+
+@server (
+	group: message
+)
+
+service main {
+	@doc (
+		summary: "发送消息并获取回复"
+	)
+	@handler InvokeSend
+	post /send/invoke (InvokeParams) returns (string)
+}
