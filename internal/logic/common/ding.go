@@ -55,7 +55,7 @@ func DingSend(args *types.DingMessageSendRequest) (_err error) {
 	content := struct {
 		Content string `json:"content"`
 	}{
-		Content: args.Text,
+		Content: args.Text.Content,
 	}
 	msgParam, _ := json.Marshal(content)
 	privateChatSendRequest := &dingtalkrobot_1_0.PrivateChatSendRequest{
