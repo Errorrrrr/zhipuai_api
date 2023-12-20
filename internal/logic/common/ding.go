@@ -53,9 +53,11 @@ func DingSend(args *types.DingMessageSendRequest) (_err error) {
 	privateChatSendHeaders := &dingtalkrobot_1_0.PrivateChatSendHeaders{}
 	privateChatSendHeaders.XAcsDingtalkAccessToken = tea.String(token)
 	content := struct {
-		Content string `json:"content"`
+		Text  string `json:"text"`
+		Title string `json:"title"`
 	}{
-		Content: args.Text.Content,
+		Text:  args.Text.Content,
+		Title: args.Text.Content,
 	}
 	msgParam, _ := json.Marshal(content)
 	privateChatSendRequest := &dingtalkrobot_1_0.PrivateChatSendRequest{
