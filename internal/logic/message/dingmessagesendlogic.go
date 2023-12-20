@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"strings"
 	"zhipuai_api/internal/common/dto"
 	"zhipuai_api/internal/common/enum"
 	logic "zhipuai_api/internal/logic/common"
@@ -57,7 +58,12 @@ func (l *DingMessageSendLogic) DingMessageSend(req *types.DingMessageSendRequest
 	}
 
 	req.Text.Content = aiResp.Data.Choices[0].Content
-
+	if strings.HasSuffix(req.Text.Content, "\"") {
+		req.Text.Content = strings.TrimSuffix(req.Text.Content, "\"")
+	}
+	if strings.HasPrefix(req.Text.Content, "\"") {
+		req.Text.Content = strings.TrimPrefix(req.Text.Content, "\"")
+	}
 	err = logic.DingSend(req)
 	return
 }
