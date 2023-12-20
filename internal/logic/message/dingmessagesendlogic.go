@@ -35,7 +35,7 @@ func (l *DingMessageSendLogic) DingMessageSend(req *types.DingMessageSendRequest
 	prompt := []*dto.Prompt{
 		{
 			RoleName: enum.User,
-			Content:  req.Text.Content,
+			Content:  req.Text.Content + "。假如回答包括代码，则使用markdown格式返回",
 		},
 	}
 	body := &dto.AiRequest{

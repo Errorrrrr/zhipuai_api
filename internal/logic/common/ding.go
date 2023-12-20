@@ -56,7 +56,7 @@ func DingSend(args *types.DingMessageSendRequest) (_err error) {
 		Text  string `json:"text"`
 		Title string `json:"title"`
 	}{
-		Text:  args.Text.Content + "。假如回答包括代码，则使用markdown格式返回",
+		Text:  args.Text.Content,
 		Title: args.Text.Content,
 	}
 	msgParam, _ := json.Marshal(content)
