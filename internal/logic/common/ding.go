@@ -50,8 +50,8 @@ func DingSend(args *types.DingMessageSendRequest) (_err error) {
 		return errors.New("获取钉钉token失败")
 	}
 	client := resource.DingClient
-	privateChatSendHeaders := &dingtalkrobot_1_0.PrivateChatSendHeaders{}
-	privateChatSendHeaders.XAcsDingtalkAccessToken = tea.String(token)
+	batchSendOTOHeaders := &dingtalkrobot_1_0.BatchSendOTOHeaders{}
+	batchSendOTOHeaders.XAcsDingtalkAccessToken = tea.String(token)
 	content := struct {
 		Text  string `json:"text"`
 		Title string `json:"title"`
@@ -60,11 +60,11 @@ func DingSend(args *types.DingMessageSendRequest) (_err error) {
 		Title: args.Text.Content,
 	}
 	msgParam, _ := json.Marshal(content)
-	privateChatSendRequest := &dingtalkrobot_1_0.PrivateChatSendRequest{
-		MsgParam:           tea.String(string(msgParam)),
-		MsgKey:             tea.String("sampleMarkdown"),
-		RobotCode:          tea.String(config.Conf.Dingtalk.AppKey),
-		OpenConversationId: tea.String(args.ConversationId),
+	privateChatSendRequest := &dingtalkrobot_1_0.BatchSendOTORequest{
+		MsgParam:  tea.String(string(msgParam)),
+		MsgKey:    tea.String("sampleMarkdown"),
+		RobotCode: tea.String(config.Conf.Dingtalk.AppKey),
+		UserIds:   []*string{tea.String(args.SenderStaffId)},
 	}
 	tryErr := func() (_e error) {
 		defer func() {
@@ -72,7 +72,7 @@ func DingSend(args *types.DingMessageSendRequest) (_err error) {
 				_e = r
 			}
 		}()
-		_, _err = client.PrivateChatSendWithOptions(privateChatSendRequest, privateChatSendHeaders, &util.RuntimeOptions{})
+		_, _err = client.BatchSendOTOWithOptions(privateChatSendRequest, batchSendOTOHeaders, &util.RuntimeOptions{})
 		if _err != nil {
 			return _err
 		}
