@@ -64,6 +64,7 @@ func (l *DingMessageSendLogic) DingMessageSend(req *types.DingMessageSendRequest
 	if strings.HasPrefix(req.Text.Content, "\"") {
 		req.Text.Content = strings.TrimPrefix(req.Text.Content, "\"")
 	}
+	req.Text.Content = strings.TrimSpace(req.Text.Content)
 	err = logic.DingSend(req)
 	return
 }
