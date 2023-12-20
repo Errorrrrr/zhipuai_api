@@ -17,7 +17,7 @@ func Send(body *dto.AiRequest, model, invokeMethod string) (string, error) {
 
 	url := "https://open.bigmodel.cn/api/paas/v3/model-api/%s/%s"
 	headers := map[string]string{
-		"Text-Type":     "application/json",
+		"Content-Type":  "application/json",
 		"Authorization": token,
 	}
 	b, _ := json.Marshal(body)
